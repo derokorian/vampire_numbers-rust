@@ -33,7 +33,7 @@ fn find_vampire_fangs(pl:u8, fc:u8) -> Vec<Vampire> {
             fs.sort();
 
             if ps.len() == pl as usize && ps == fs 
-               && x%10 != 0 && y%10 != 0 {
+               && (x%10 != 0 || y%10 != 0) {
                 vampires.push(Vampire{ product: p, fangs: vec![x,y]});
             }
         }
@@ -55,13 +55,13 @@ fn join_fangs(fangs: Vec<u32>) -> String {
 fn test_find_vampire_fangs_four_two() {
     let vampires: Vec<Vampire> = find_vampire_fangs(4,2);
     let expected: Vec<Vampire> = vec![
-        Vampire {product: 1260, fangs: vec![21,60]},
-        Vampire {product: 1395, fangs: vec![15,93]},
-        Vampire {product: 1435, fangs: vec![35,41]},
-        Vampire {product: 1530, fangs: vec![30,51]},
-        Vampire {product: 1827, fangs: vec![21,87]},
+        Vampire {product: 6880, fangs: vec![80,86]},
         Vampire {product: 2187, fangs: vec![27,81]},
-        Vampire {product: 6880, fangs: vec![80,86]}
+        Vampire {product: 1827, fangs: vec![21,87]},
+        Vampire {product: 1530, fangs: vec![30,51]},
+        Vampire {product: 1435, fangs: vec![35,41]},
+        Vampire {product: 1395, fangs: vec![15,93]},
+        Vampire {product: 1260, fangs: vec![21,60]}
     ];
     assert_eq_vec_vampire(expected, vampires);
 }
